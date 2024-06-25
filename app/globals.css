@@ -74,3 +74,16 @@
       @apply bg-background text-foreground;
     }
   }
+
+  @layer utilities {
+    
+    .text-grey-1 {
+      --tw-text-opacity: 1;
+      color: rgb(105 105 105 / var(--tw-text-opacity));
+    }
+
+    .left_sidebar {
+      @apply sticky left-0 top-0 flex w-fit flex-col  justify-between  border-none pt-8 text-grey-1 max-md:hidden lg:w-[270px] lg:pl-8;
+    }
+    
+  }
