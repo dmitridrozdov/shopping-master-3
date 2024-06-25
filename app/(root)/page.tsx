@@ -4,7 +4,7 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div className="mt-9 ml-9 flex flex-col w-1/2">
+    <div className="mt-3 ml-3 flex flex-col">
       <section>Add products</section>
       <section className="flex items-center mt-2">
         <Input />
