@@ -82,6 +82,10 @@
       color: rgb(105 105 105 / var(--tw-text-opacity));
     }
 
+    .bg-nav-focus {
+      background-image: linear-gradient(270deg, rgba(1, 89, 89, 0.06) 0%, rgba(255, 255, 255, 0.00) 100%);
+    }
+
     .left_sidebar {
       @apply sticky left-0 top-0 flex w-fit flex-col  justify-between  border-none pt-8 text-grey-1 max-md:hidden lg:w-[270px] lg:pl-8;
     }
