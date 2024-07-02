@@ -20,12 +20,12 @@ const MobileNav = () => {
     <section>
       <Sheet>
         <SheetTrigger>
-          <Image src="/icons/hamburger.svg" width={30} height={30} alt="menu" className="cursor-pointer" />
+          <Image src="hamburger.svg" width={30} height={30} alt="menu" className="cursor-pointer" />
         </SheetTrigger>
-        <SheetContent side="left" className="border-none bg-black-1">
+        <SheetContent side="left" className="border-none bg-white">
           <Link href="/" className="flex cursor-pointer items-center gap-1 pb-10 pl-4">
-            <Image src="/icons/logo.svg" alt="logo" width={23} height={27} />
-            <h1 className="text-24 font-extrabold  text-white-1 ml-2">Podcastr</h1>
+            <Image src="logo.svg" alt="logo" width={23} height={27} />
+            <h1 className="text-24 font-extrabold  text-black ml-2">SM</h1>
           </Link>
           <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">
             <SheetClose asChild>
