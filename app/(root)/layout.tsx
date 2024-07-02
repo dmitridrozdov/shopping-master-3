@@ -22,6 +22,7 @@ export default function RootLayout({
                 height={15}
                 alt="menu icon"
               />
+              <h1 className="text-24 font-extrabold  text-black ml-2">SM</h1>
               <MobileNav />
             </div>
             <div className="flex flex-col md:pb-14">
