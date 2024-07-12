@@ -6,7 +6,7 @@ import { api } from "@/convex/_generated/api";
 
 
 const Home = () => {
-  const tasks = useQuery(api.tasks.get);
+  // const tasks = useQuery(api.tasks.get);
   return (
     <div className="mt-3 ml-3 flex flex-col">
       <section>Add products</section>
@@ -15,7 +15,7 @@ const Home = () => {
         <Button className="ml-3">Add</Button>
       </section>
       <div>
-        {tasks?.map(({ _id, text }) => <div key={_id}>{text}</div>)}
+        {/* {tasks?.map(({ _id, text }) => <div key={_id}>{text}</div>)} */}
       </div>
     </div>
   )
