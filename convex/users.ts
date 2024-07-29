@@ -84,13 +84,13 @@ export const updateUser = internalMutation({
       email: args.email,
     });
 
-    const podcast = await ctx.db
+    const currentproducts = await ctx.db
       .query("currentproducts")
       .filter((q) => q.eq(q.field("authorId"), args.clerkId))
       .collect();
 
     await Promise.all(
-      podcast.map(async (p) => {
+      currentproducts.map(async (p) => {
         await ctx.db.patch(p._id, {
           authorImageUrl: args.imageUrl,
         });
