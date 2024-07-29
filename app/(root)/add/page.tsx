@@ -3,6 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useMutation } from "convex/react"
+import { api } from "@/convex/_generated/api"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -26,6 +28,7 @@ const formSchema = z.object({
 })
 
 const CreateProductWithCategory = () => {
+
    // 1. Define your form.
    const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -34,12 +37,15 @@ const CreateProductWithCategory = () => {
       category: "",
     },
   })
- 
+  
+  const createProduct = useMutation(api.products.createProduct)
+
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(product: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+    console.log(product)
+    createProduct(product)
   }
 
   return (
