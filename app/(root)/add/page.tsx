@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useMutation } from "convex/react"
 import { api } from "@/convex/_generated/api"
+import { useToast } from "@/components/ui/use-toast"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -29,6 +30,9 @@ const formSchema = z.object({
 
 const CreateProductWithCategory = () => {
 
+  const createProduct = useMutation(api.products.createProduct)
+  const { toast } = useToast()
+
    // 1. Define your form.
    const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,14 +42,16 @@ const CreateProductWithCategory = () => {
     },
   })
   
-  const createProduct = useMutation(api.products.createProduct)
-
   // 2. Define a submit handler.
   function onSubmit(product: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(product)
     createProduct(product)
+      .then(() => {
+        toast({ title: product.product + ' created' });
+        form.reset(); // Reset the form fields
+      })
+      .catch((error) => {
+        console.error('Error creating product:', error);
+      });
   }
 
   return (
