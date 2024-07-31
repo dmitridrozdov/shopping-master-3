@@ -39,4 +39,19 @@ export const get = query({
     handler: async (ctx) => {
       return await ctx.db.query("currentproducts").collect();
     },
-  });
+});
+
+  // this mutation will delete the product.
+export const deleteProduct = mutation({
+    args: {
+      id: v.id("currentproducts"),
+    },
+    handler: async (ctx, args) => {
+      const product = await ctx.db.get(args.id);
+  
+      if (!product) {
+        throw new ConvexError("Product not found");
+      }
+      return await ctx.db.delete(args.id);
+    },
+});
