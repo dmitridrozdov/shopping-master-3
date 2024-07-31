@@ -57,17 +57,17 @@ const Home = () => {
   }
 
   return (
-    <div className="mt-2 ml-2 flex flex-col w-full">
+    <div className="flex flex-col w-full">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex items-center">
           <FormField
             control={form.control}
             name="product"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex-grow">
                 <FormLabel>Product</FormLabel>
                 <FormControl>
-                  <Input placeholder="Product" {...field} />
+                  <Input placeholder="Product" className="w-full sm:w-96" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
