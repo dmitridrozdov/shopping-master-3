@@ -5,8 +5,8 @@ export default defineSchema({
 
   currentproducts: defineTable({
     user: v.id('users'),
+    author: v.string(),
     authorId: v.string(),
-    authorImageUrl: v.string(),
     category: v.string(),
     product: v.string(),
   })
