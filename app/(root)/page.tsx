@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import ProductListItem from "@/components/ProductListItem"
 
 const formSchema = z.object({
   product: z.string().min(2, {
@@ -77,7 +78,9 @@ const Home = () => {
         </form>
       </Form>
       <div>
-        {currentProducts?.map(({ _id, product }) => <div key={_id}>{product}</div>)}
+        {currentProducts?.map(({ _id, product }) => (
+          <ProductListItem id={_id} product={product} />
+        ))}
       </div> 
     </div>
   )
