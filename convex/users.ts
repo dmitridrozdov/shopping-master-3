@@ -92,7 +92,7 @@ export const updateUser = internalMutation({
     await Promise.all(
       currentproducts.map(async (p) => {
         await ctx.db.patch(p._id, {
-          authorImageUrl: args.imageUrl,
+          author: args.email,
         });
       })
     );
