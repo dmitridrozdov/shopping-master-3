@@ -55,7 +55,7 @@ const CreateProductWithCategory = () => {
   }
 
   return (
-    <div className="mt-3 ml-3 flex flex-col">
+    <div className="flex flex-col">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
