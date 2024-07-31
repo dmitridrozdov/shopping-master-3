@@ -2,7 +2,7 @@ import { ConvexError, v } from "convex/values";
 
 import { mutation, query } from "./_generated/server";
 
-// create podcast mutation
+// create product mutation
 export const createProduct = mutation({
   args: {
     category: v.string(),
