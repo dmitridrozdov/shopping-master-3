@@ -79,7 +79,7 @@ const Home = () => {
       </Form>
       <div>
         {currentProducts?.map(({ _id, product }) => (
-          <ProductListItem id={_id} product={product} />
+          <ProductListItem key={_id} id={_id} product={product} />
         ))}
       </div> 
     </div>
