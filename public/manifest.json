@@ -1,0 +1,16 @@
+{
+    "short_name": "SM-3",
+    "name": "Shopoing-Master-3",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+      {
+        "src": "favicon.ico",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
