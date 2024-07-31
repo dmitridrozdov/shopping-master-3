@@ -84,7 +84,7 @@ const CreateProductWithCategory = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Add</Button>
         </form>
       </Form>
     </div>
