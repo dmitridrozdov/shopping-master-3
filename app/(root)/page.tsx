@@ -77,7 +77,7 @@ const Home = () => {
           <Button type="submit" className="ml-2">Add</Button>
         </form>
       </Form>
-      <div>
+      <div className="mt-3">
         {currentProducts?.map(({ _id, product }) => (
           <ProductListItem key={_id} id={_id} product={product} />
         ))}
