@@ -17,8 +17,8 @@ const ProductListItem = ({ id, product }: Product) => {
   };
 
   return (
-    <div key={id} className="cursor-pointer" onClick={handleClick}>
-      <span className="text-gray-700">{product}</span>
+    <div key={id} className="cursor-pointer mt-2 ml-2" onClick={handleClick}>
+      <span className="text-gray-500">{product}</span>
     </div>
   );
 };
