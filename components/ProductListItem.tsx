@@ -1,6 +1,5 @@
 import { api } from "@/convex/_generated/api"
 import { useMutation } from "convex/react"
-// import { v } from "convex/values";
 import { Id } from "@/convex/_generated/dataModel";
 
 interface Product {
@@ -17,8 +16,8 @@ const ProductListItem = ({ id, product }: Product) => {
   };
 
   return (
-    <div key={id} className="cursor-pointer mt-2 ml-2" onClick={handleClick}>
-      <span className="text-gray-500">{product}</span>
+    <div key={id} className="cursor-pointer product-list-item bg-nav-focus border-l-8 border-rose-600" onClick={handleClick}>
+      <span className="list-font ml-2">{product}</span>
     </div>
   );
 };
