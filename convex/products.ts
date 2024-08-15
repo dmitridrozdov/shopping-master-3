@@ -30,3 +30,24 @@ export const createProduct = mutation({
     });
   },
 });
+
+// this query will get the products by the search query.
+export const getProductBySearch = query({
+  args: {
+    search: v.string(),
+  },
+  handler: async (ctx, args) => {
+    if (args.search === "") {
+      return await ctx.db.query("products").order("desc").collect();
+    }
+
+    const authorSearch = await ctx.db
+      .query("products")
+      .withSearchIndex("search_product", (q) => q.search("product", args.search))
+      .take(10);
+
+    if (authorSearch.length > 0) {
+      return authorSearch;
+    }
+  },
+});
