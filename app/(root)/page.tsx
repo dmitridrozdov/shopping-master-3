@@ -34,7 +34,7 @@ const Home = () => {
   const { toast } = useToast()
 
    // 1. Define your form.
-   const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       product: "",
@@ -42,10 +42,10 @@ const Home = () => {
   })
   
   // 2. Define a submit handler.
-  function onSubmit(product: z.infer<typeof formSchema>) {
+  const onSubmit = (product: z.infer<typeof formSchema>) => {
+
     createProduct({
       product: product.product,
-      category: "test",
     })
       .then(() => {
         toast({ title: product.product + ' created' });
