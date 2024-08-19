@@ -5,11 +5,17 @@ import { mutation, query } from "./_generated/server";
 // create list mutation
 export const createProduct = mutation({
   args: {
-    category: v.string(),
+    // category: v.string(),
     product: v.string(),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
+    const dbproduct =  await ctx.db
+      .query("products")
+      .withSearchIndex("search_product", (q) => q.search("product", args.product))
+      .take(1);
+
+    const category = dbproduct.length > 0 ? dbproduct[0].category : 'not specified'
 
     if (!identity) {
       throw new ConvexError("User not authenticated");
@@ -28,7 +34,7 @@ export const createProduct = mutation({
       user: user[0]._id,
       author: user[0].name,
       authorId: user[0].clerkId,
-      category: args.category,
+      category: category,
       product: args.product,
     });
   },
