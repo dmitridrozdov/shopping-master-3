@@ -90,7 +90,7 @@
       @apply sticky left-0 top-0 flex w-fit flex-col  justify-between  border-none pt-8 text-grey-1 max-md:hidden lg:w-[270px] lg:pl-8;
     }
     .list-font {
-      font-size: 10px;
+      font-size: 12px;
     }
     .product-list-item {
       border-bottom: 1px solid rgb(226, 225, 225);
