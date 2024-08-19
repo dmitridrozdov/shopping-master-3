@@ -20,6 +20,47 @@ import {
 import { Input } from "@/components/ui/input"
 import ProductListItem from "@/components/ProductListItem"
 
+type Id<T> = string; // Replace with your actual Id type definition
+
+// Define the CurrentProduct type
+interface CurrentProduct {
+  _id: Id<"currentproducts">;
+  _creationTime: number;
+  product: string;
+  user: Id<"users">;
+  author: string;
+  authorId: string;
+  category: string;
+}
+
+// Define a type for the category-to-color mapping
+interface CategoryColorMapping {
+  [category: string]: string;
+}
+
+const borderColors: string[] = [
+  'border-red-500',
+  'border-green-400',
+  'border-blue-600',
+  'border-yellow-300',
+  'border-purple-700',
+  'border-pink-200',
+  'border-orange-900',
+  'border-teal-500',
+  'border-indigo-400',
+  'border-gray-600',
+  'border-neutral-800',
+  'border-stone-300',
+  'border-amber-700',
+  'border-lime-400',
+  'border-emerald-500',
+  'border-cyan-600',
+  'border-sky-400',
+  'border-violet-700',
+  'border-fuchsia-300',
+  'border-rose-600',
+];
+
 const formSchema = z.object({
   product: z.string().min(2, {
     message: "Product must be at least 2 characters.",
@@ -56,6 +97,31 @@ const Home = () => {
       });
   }
 
+  // Function to assign colors to categories
+  const assignColorsToCategories = (products: CurrentProduct[]): CategoryColorMapping => {
+    const categories: CategoryColorMapping = {};
+    let colorIndex = 0;
+
+    products.forEach((product) => {
+      const { category } = product;
+
+      // If this category has not been assigned a color, assign the next available color
+      if (!categories[category]) {
+        categories[category] = borderColors[colorIndex];
+        colorIndex = (colorIndex + 1) % borderColors.length; // Wrap around if more categories than colors
+      }
+    });
+
+    return categories;
+  };
+
+  // const currentProducts: CurrentProduct[] | undefined = // fetched from database
+
+  // Use a default empty array if `currentProducts` is undefined
+  const productsToDisplay: CurrentProduct[] = currentProducts ?? [];
+
+  const categoriesWithColors = assignColorsToCategories(productsToDisplay);
+
   return (
     <div className="flex flex-col w-full">
       <Form {...form}>
@@ -78,9 +144,17 @@ const Home = () => {
         </form>
       </Form>
       <div className="mt-3">
-        {currentProducts?.map(({ _id, product }) => (
-          <ProductListItem key={_id} id={_id} product={product} />
-        ))}
+      {
+        currentProducts?.map(({ _id, product, category }) => (
+          <ProductListItem
+            key={_id}
+            id={_id}
+            product={product}
+            borderColor={categoriesWithColors[category]}
+          />
+        ))
+      }
+  
       </div> 
     </div>
   )
