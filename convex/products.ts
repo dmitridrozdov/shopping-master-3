@@ -32,7 +32,7 @@ export const createProduct = mutation({
 });
 
 // this query will get the products by the search query.
-export const getProductBySearch = query({
+export const getProductsBySearch = query({
   args: {
     search: v.string(),
   },
