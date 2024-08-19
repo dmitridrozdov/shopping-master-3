@@ -102,6 +102,9 @@ const Home = () => {
     const categories: CategoryColorMapping = {};
     let colorIndex = 0;
 
+    // Sort the products by category first
+    products.sort((a, b) => a.category.localeCompare(b.category));
+
     products.forEach((product) => {
       const { category } = product;
 
