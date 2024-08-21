@@ -39,6 +39,7 @@ export const getProductsBySearch = query({
   handler: async (ctx, args) => {
     if (args.search === "") {
       return await ctx.db.query("products").order("desc").collect();
+      // return null
     }
 
     const authorSearch = await ctx.db
