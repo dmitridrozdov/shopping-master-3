@@ -99,7 +99,7 @@
       align-items: center;
     }
 
-    .fade-out {
+    /* .fade-out {
       animation: fadeOut 1s ease-out;
       color: red;
     }
@@ -111,6 +111,24 @@
       100% {
         opacity: 0;
         color: white;
+      }
+    } */
+
+    .fade-out {
+      animation: fadeOut 1s ease-out;
+      color: white;
+      background-color: red;
+    }
+    
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+        background-image:  red
+      }
+      100% {
+        opacity: 0;
+        color: white;
+        background-image: white
       }
     }
   }
