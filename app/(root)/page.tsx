@@ -127,6 +127,10 @@ const Home = () => {
 
   const categoriesWithColors = assignColorsToCategories(productsToDisplay);
 
+  const clearInput = () => {
+    setInputValue('');
+  };
+
   return (
     <div className="flex flex-col w-full">
       <Form {...form}>
@@ -157,7 +161,7 @@ const Home = () => {
         </form>
       </Form>
 
-      <ProductSearch inputValue={inputValue} />
+      <ProductSearch inputValue={inputValue} clearInput={clearInput}/>
 
       <div className="mt-3">
       {
