@@ -9,17 +9,19 @@ interface ProductSearchProps {
 
 const ProductSearch: React.FC<ProductSearchProps> = ({ inputValue }) => {
 
-  const selectedProducts = inputValue === '' ? [] : useQuery(api.products.getProductsBySearch, { search: inputValue })
+  const selectedProducts = useQuery(api.products.getProductsBySearch, { search: inputValue })
   const selectedFilteredProducts = 
     selectedProducts?.filter(item => item.product.startsWith(inputValue.toLowerCase()));
 
   return (
     <div className="mt-3">
-      <p>
-          {selectedFilteredProducts?.map((product, index) => (
-            <ProductSearchResult key={index} productName={product.product} />
-          ))}
-        </p>
+         {inputValue !== '' && (
+            <p>
+                {selectedFilteredProducts?.map((product, index) => (
+                    <ProductSearchResult key={index} productName={product.product} />
+                ))}
+            </p>
+         )}
     </div>
   )
 }
