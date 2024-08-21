@@ -98,4 +98,19 @@
       display: flex;
       align-items: center;
     }
+
+    .fade-out {
+      animation: fadeOut 1s ease-out;
+      color: red;
+    }
+    
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        color: white;
+      }
+    }
   }
