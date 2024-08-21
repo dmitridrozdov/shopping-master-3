@@ -122,8 +122,6 @@ const Home = () => {
     return categories;
   };
 
-  // const currentProducts: CurrentProduct[] | undefined = // fetched from database
-
   // Use a default empty array if `currentProducts` is undefined
   const productsToDisplay: CurrentProduct[] = currentProducts ?? [];
 
