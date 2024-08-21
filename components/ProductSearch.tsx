@@ -5,9 +5,10 @@ import ProductSearchResult from './ProductSearchResult';
 
 interface ProductSearchProps {
   inputValue: string;
+  clearInput: () => void;
 }
 
-const ProductSearch: React.FC<ProductSearchProps> = ({ inputValue }) => {
+const ProductSearch: React.FC<ProductSearchProps> = ({ inputValue, clearInput }) => {
 
   const selectedProducts = useQuery(api.products.getProductsBySearch, { search: inputValue })
   const selectedFilteredProducts = 
@@ -18,7 +19,7 @@ const ProductSearch: React.FC<ProductSearchProps> = ({ inputValue }) => {
          {inputValue !== '' && (
             <p>
                 {selectedFilteredProducts?.map((product, index) => (
-                    <ProductSearchResult key={index} productName={product.product} />
+                    <ProductSearchResult key={index} productName={product.product} clearInput={clearInput}/>
                 ))}
             </p>
          )}
