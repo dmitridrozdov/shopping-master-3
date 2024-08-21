@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -19,6 +20,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import ProductListItem from "@/components/ProductListItem"
+import ProductSearch from '@/components/ProductSearch'
 
 type Id<T> = string; // Replace with your actual Id type definition
 
@@ -69,6 +71,7 @@ const formSchema = z.object({
 
 const Home = () => {
 
+  const [inputValue, setInputValue] = useState<string>("");
   const createProduct = useMutation(api.list.createProduct)
   const currentProducts = useQuery(api.list.get)
 
@@ -91,6 +94,7 @@ const Home = () => {
       .then(() => {
         toast({ title: product.product + ' created' });
         form.reset(); // Reset the form fields
+        setInputValue('')
       })
       .catch((error) => {
         console.error('Error creating product:', error);
@@ -136,16 +140,27 @@ const Home = () => {
               <FormItem className="flex-grow">
                 <FormLabel>Product</FormLabel>
                 <FormControl>
-                  <Input placeholder="Product" className="w-full sm:w-96" {...field} />
+                  <Input 
+                    placeholder="Product" 
+                    className="w-full sm:w-96" 
+                    {...field} 
+                    value={inputValue}
+                    onChange={(e) => {
+                      setInputValue(e.target.value); // Update local state
+                      field.onChange(e); // Update form state
+                    }}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-
           <Button type="submit" className="ml-2">Add</Button>
         </form>
       </Form>
+
+      <ProductSearch inputValue={inputValue} />
+
       <div className="mt-3">
       {
         currentProducts?.map(({ _id, product, category }) => (
@@ -157,7 +172,6 @@ const Home = () => {
           />
         ))
       }
-  
       </div> 
     </div>
   )
