@@ -148,6 +148,7 @@ const Home = () => {
                     {...field} 
                     value={inputValue}
                     onChange={(e) => {
+                      e.preventDefault()
                       setInputValue(e.target.value); // Update local state
                       field.onChange(e); // Update form state
                     }}
