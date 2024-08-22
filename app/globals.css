@@ -92,27 +92,17 @@
     .list-font {
       font-size: 12px;
     }
+
+    .input-font {
+      font-size: 16px;
+    }
+
     .product-list-item {
       border-bottom: 1px solid rgb(226, 225, 225);
       padding: 10px 0;
       display: flex;
       align-items: center;
     }
-
-    /* .fade-out {
-      animation: fadeOut 1s ease-out;
-      color: red;
-    }
-    
-    @keyframes fadeOut {
-      0% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        color: white;
-      }
-    } */
 
     .fade-out {
       animation: fadeOut 1s ease-out;
