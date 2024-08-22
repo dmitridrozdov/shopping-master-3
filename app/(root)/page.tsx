@@ -144,7 +144,7 @@ const Home = () => {
                 <FormControl>
                   <Input 
                     placeholder="Product" 
-                    className="w-full sm:w-96" 
+                    className="w-full sm:w-96 input-font" 
                     {...field} 
                     value={inputValue}
                     onChange={(e) => {
