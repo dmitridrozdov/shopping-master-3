@@ -113,12 +113,12 @@
     @keyframes fadeOut {
       0% {
         opacity: 1;
-        background-image:  red
+        background-image:  red;
       }
       100% {
         opacity: 0;
         color: white;
-        background-image: white
+        background-image: white;
       }
     }
   }
