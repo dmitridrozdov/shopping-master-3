@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useMutation, useQuery } from "convex/react"
 import { api } from "@/convex/_generated/api"
-import { useToast } from "@/components/ui/use-toast"
+// import { useToast } from "@/components/ui/use-toast"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -75,7 +75,7 @@ const Home = () => {
   const createProduct = useMutation(api.list.createProduct)
   const currentProducts = useQuery(api.list.get)
 
-  const { toast } = useToast()
+  // const { toast } = useToast()
 
    // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -92,7 +92,7 @@ const Home = () => {
       product: product.product,
     })
       .then(() => {
-        toast({ title: product.product + ' created' });
+        // toast({ title: product.product + ' created' });
         form.reset(); // Reset the form fields
         setInputValue('')
       })
