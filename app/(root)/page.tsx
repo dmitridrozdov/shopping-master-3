@@ -118,17 +118,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        
-        {/* Header Section */}
-        <div className="mb-8 text-center">
-          <h3 className="text-4xl font-bold bg-gradient-to-r from-purple-300 to-purple-600 bg-clip-text text-transparent mb-2">
-            Shopping List
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
-            Add and manage your products effortlessly
-          </p>
-        </div>
+      <div className="max-w-4xl mx-auto px-1 py-8 sm:px-6 lg:px-8">
 
         {/* Form Card */}
         <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 p-6 mb-6 transition-all duration-300 hover:shadow-2xl">
