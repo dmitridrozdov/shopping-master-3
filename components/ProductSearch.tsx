@@ -33,7 +33,7 @@ const ProductSearch: React.FC<ProductSearchProps> = ({ inputValue, clearInput })
     return (
       <div className="mt-4 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
         <p className="text-sm text-gray-500 dark:text-gray-400">
-          No suggestions found for "<span className="font-medium text-gray-700 dark:text-gray-300">{inputValue}</span>"
+          No suggestions found for &quot;<span className="font-medium text-gray-700 dark:text-gray-300">{inputValue}</span>&quot;
         </p>
       </div>
     );
