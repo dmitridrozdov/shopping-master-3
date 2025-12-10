@@ -6,25 +6,21 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useMutation, useQuery } from "convex/react"
 import { api } from "@/convex/_generated/api"
-// import { useToast } from "@/components/ui/use-toast"
 
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import ProductListItem from "@/components/ProductListItem"
 import ProductSearch from '@/components/ProductSearch'
 
-type Id<T> = string; // Replace with your actual Id type definition
+type Id<T> = string;
 
-// Define the CurrentProduct type
 interface CurrentProduct {
   _id: Id<"currentproducts">;
   _creationTime: number;
@@ -35,42 +31,28 @@ interface CurrentProduct {
   category: string;
 }
 
-// Define a type for the category-to-color mapping
 interface CategoryColorMapping {
   [category: string]: string;
 }
 
 const borderColors: string[] = [
-  'border-slate-500',
-  'border-slate-400',
-  'border-slate-300',
-  'border-slate-200',
-  'border-slate-100',
-  'border-gray-500',
-  'border-gray-400',
-  'border-gray-300',
-  'border-gray-200',
-  'border-gray-100',
-  'border-neutral-500',
-  'border-neutral-400',
-  'border-neutral-300',
-  'border-neutral-200',
-  'border-neutral-100',
-  'border-zinc-500',
-  'border-zinc-400',
-  'border-zinc-300',
-  'border-zinc-200',
-  'border-zinc-100',
-  'border-stone-500',
-  'border-stone-400',
-  'border-stone-300',
-  'border-stone-200',
-  'border-stone-100',
-  'border-warm-gray-500',
-  'border-warm-gray-400',
-  'border-warm-gray-300',
-  'border-warm-gray-200',
-  'border-warm-gray-100',
+  'bg-blue-500',
+  'bg-purple-500',
+  'bg-pink-500',
+  'bg-rose-500',
+  'bg-red-500',
+  'bg-orange-500',
+  'bg-amber-500',
+  'bg-yellow-500',
+  'bg-lime-500',
+  'bg-green-500',
+  'bg-emerald-500',
+  'bg-teal-500',
+  'bg-cyan-500',
+  'bg-sky-500',
+  'bg-indigo-500',
+  'bg-violet-500',
+  'bg-fuchsia-500',
 ];
 
 const formSchema = z.object({
@@ -80,14 +62,10 @@ const formSchema = z.object({
 })
 
 const Home = () => {
-
   const [inputValue, setInputValue] = useState<string>("");
   const createProduct = useMutation(api.list.createProduct)
   const currentProducts = useQuery(api.list.get)
 
-  // const { toast } = useToast()
-
-   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -95,15 +73,12 @@ const Home = () => {
     },
   })
   
-  // 2. Define a submit handler.
   const onSubmit = (product: z.infer<typeof formSchema>) => {
-
     createProduct({
       product: product.product,
     })
       .then(() => {
-        // toast({ title: product.product + ' created' });
-        form.reset(); // Reset the form fields
+        form.reset();
         setInputValue('')
       })
       .catch((error) => {
@@ -111,81 +86,142 @@ const Home = () => {
       });
   }
 
-  // Function to assign colors to categories
   const assignColorsToCategories = (products: CurrentProduct[]): CategoryColorMapping => {
     const categories: CategoryColorMapping = {};
     let colorIndex = 0;
 
-    // Sort the products by category first
     products.sort((a, b) => a.category.localeCompare(b.category));
 
     products.forEach((product) => {
       const { category } = product;
 
-      // If this category has not been assigned a color, assign the next available color
       if (!categories[category]) {
         categories[category] = borderColors[colorIndex];
-        colorIndex = (colorIndex + 1) % borderColors.length; // Wrap around if more categories than colors
+        colorIndex = (colorIndex + 1) % borderColors.length;
       }
     });
 
     return categories;
   };
 
-  // Use a default empty array if `currentProducts` is undefined
   const productsToDisplay: CurrentProduct[] = currentProducts ?? [];
-
   const categoriesWithColors = assignColorsToCategories(productsToDisplay);
 
   const clearInput = () => {
     setInputValue('');
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    form.handleSubmit(onSubmit)(e);
+  };
+
   return (
-    <div className="flex flex-col w-full">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex items-center">
-          <FormField
-            control={form.control}
-            name="product"
-            render={({ field }) => (
-              <FormItem className="flex-grow">
-                <FormLabel>Product</FormLabel>
-                <FormControl>
-                  <Input 
-                    placeholder="Product" 
-                    className="w-full sm:w-96 input-font" 
-                    {...field} 
-                    value={inputValue}
-                    onChange={(e) => {
-                      e.preventDefault()
-                      setInputValue(e.target.value); // Update local state
-                      field.onChange(e); // Update form state
-                    }}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit" className="ml-2">Add</Button>
-        </form>
-      </Form>
+    <div className="min-h-screen">
+      <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        
+        {/* Header Section */}
+        <div className="mb-8 text-center">
+          <h3 className="text-4xl font-bold bg-gradient-to-r from-purple-300 to-purple-600 bg-clip-text text-transparent mb-2">
+            Shopping List
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 text-sm">
+            Add and manage your products effortlessly
+          </p>
+        </div>
 
-      <ProductSearch inputValue={inputValue} clearInput={clearInput}/>
+        {/* Form Card */}
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 p-6 mb-6 transition-all duration-300 hover:shadow-2xl">
+          <Form {...form}>
+            <div onSubmit={handleSubmit} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="product"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-end gap-3">
+                      <div className="flex-grow">
+                        <FormControl>
+                          <div className="relative">
+                            <Input 
+                              placeholder="Enter product name..." 
+                              className="w-full h-12 px-4 text-base bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 rounded-xl focus:border-blue-500 dark:focus:border-blue-400 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all duration-200 placeholder:text-gray-400" 
+                              {...field} 
+                              value={inputValue}
+                              onChange={(e) => {
+                                e.preventDefault()
+                                setInputValue(e.target.value);
+                                field.onChange(e);
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  e.preventDefault();
+                                  handleSubmit(e as any);
+                                }
+                              }}
+                            />
+                            {inputValue && (
+                              <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                              </div>
+                            )}
+                          </div>
+                        </FormControl>
+                        <FormMessage className="mt-2 text-sm" />
+                      </div>
+                      <Button 
+                        type="button"
+                        onClick={handleSubmit}
+                        className="h-12 px-8 bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-500 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+                      >
+                        Add
+                      </Button>
+                    </div>
+                  </FormItem>
+                )}
+              />
+            </div>
+          </Form>
 
-      <div className="mt-3">
-      {
-        currentProducts?.map(({ _id, product, category }) => (
-          <ProductListItem
-            key={_id}
-            id={_id}
-            product={product}
-            borderColor={categoriesWithColors[category]}
-          />
-        ))
-      }
-      </div> 
+          <div className="mt-4">
+            <ProductSearch inputValue={inputValue} clearInput={clearInput}/>
+          </div>
+        </div>
+
+        {/* Products List */}
+        <div className="space-y-1">
+          {productsToDisplay.length === 0 ? (
+            <div className="text-center py-16 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl border-2 border-dashed border-gray-300 dark:border-gray-700">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+              </div>
+              <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">No products yet</p>
+              <p className="text-gray-400 dark:text-gray-500 text-sm mt-1">Start by adding your first product above</p>
+            </div>
+          ) : (
+            <>
+              <div className="flex items-center justify-between mb-4 px-1">
+                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+                  Your Products ({productsToDisplay.length})
+                </h2>
+                <div className="text-xs text-gray-500 dark:text-gray-400">
+                  Click any item to remove
+                </div>
+              </div>
+              {currentProducts?.map(({ _id, product, category }) => (
+                <ProductListItem
+                  key={_id}
+                  id={_id}
+                  product={product}
+                  borderColor={categoriesWithColors[category]}
+                />
+              ))}
+            </>
+          )}
+        </div>
+      </div>
     </div>
   )
 }
