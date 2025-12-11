@@ -135,7 +135,7 @@ const Home = () => {
                           <div className="relative">
                             <Input 
                               placeholder="Enter product name..." 
-                              className="w-full h-12 px-4 text-base bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 rounded-xl focus:border-blue-500 dark:focus:border-blue-400 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all duration-200 placeholder:text-gray-400" 
+                              className="w-full h-12 px-4 text-sm bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 rounded-xl focus:border-blue-500 dark:focus:border-blue-400 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all duration-200 placeholder:text-gray-400" 
                               {...field} 
                               value={inputValue}
                               onChange={(e) => {
