@@ -118,7 +118,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-1 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto px-1 py-8 sm:px-6 lg:px-8">
 
         {/* Form Card */}
         <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 p-6 mb-6 transition-all duration-300 hover:shadow-2xl">
