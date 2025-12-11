@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Kanit } from "next/font/google";
 import "./globals.css";
 import ConvexClerkProvider from "./providers/ConvexClerkProvider";
 
-const font = Montserrat({ subsets: ["latin"] });
+// const font = Montserrat({ subsets: ["latin"] });
+const font = Kanit ({ weight: '300', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "SM-3",
