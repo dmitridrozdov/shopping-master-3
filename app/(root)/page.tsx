@@ -193,7 +193,7 @@ const Home = () => {
           ) : (
             <>
               <div className="flex items-center justify-between mb-4 px-1">
-                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+                <h2 className="text-xs font-semibold text-gray-700 dark:text-gray-300">
                   Your Products ({productsToDisplay.length})
                 </h2>
                 <div className="text-xs text-gray-500 dark:text-gray-400">
