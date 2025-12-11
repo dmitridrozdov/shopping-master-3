@@ -31,7 +31,7 @@ const ProductListItem = ({ id, product, borderColor }: Product) => {
       <div className={`absolute left-0 top-0 bottom-0 w-1 ${borderColor} transition-all duration-300 group-hover:w-1.5`} />
       
       <div className="px-5 py-4 flex items-center justify-between">
-        <span className="text-xs font-medium text-gray-800 dark:text-gray-100 transition-colors duration-200">
+        <span className="text-sm font-medium text-gray-800 dark:text-gray-100 transition-colors duration-200">
           {product}
         </span>
         
