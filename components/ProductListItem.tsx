@@ -23,7 +23,7 @@ const ProductListItem = ({ id, product, borderColor }: Product) => {
 
   return (
     <div
-      className={`group relative overflow-hidden cursor-pointer rounded-xl bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-850 shadow-sm hover:shadow-md transition-all duration-300 ${
+      className={`group relative overflow-hidden cursor-pointer rounded-sm bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-850 shadow-sm hover:shadow-md transition-all duration-300 ${
         isDeleting ? 'animate-delete' : 'hover:scale-[1.02]'
       }`}
       onClick={handleClick}
