@@ -7,9 +7,10 @@ interface Product {
   id: Id<"currentproducts">;
   product: string;
   borderColor: string;
+  category?: string;
 }
 
-const ProductListItem = ({ id, product, borderColor }: Product) => {
+const ProductListItem = ({ id, product, borderColor, category }: Product) => {
   const deleteProduct = useMutation(api.list.deleteProduct)
   const [isDeleting, setIsDeleting] = useState(false)
 
@@ -31,9 +32,16 @@ const ProductListItem = ({ id, product, borderColor }: Product) => {
       <div className={`absolute left-0 top-0 bottom-0 w-1 ${borderColor} transition-all duration-300 group-hover:w-1.5`} />
       
       <div className="px-5 py-4 flex items-center justify-between">
-        <span className="text-sm font-medium text-gray-800 dark:text-gray-100 transition-colors duration-200">
-          {product}
-        </span>
+        <div className="flex flex-col">
+          <span className="text-sm font-medium text-gray-800 dark:text-gray-100 transition-colors duration-200">
+            {product}
+          </span>
+          {category && (
+            <span className="text-[8px] font-normal text-gray-400 dark:text-gray-500 uppercase tracking-wide mt-0.5">
+              {category}
+            </span>
+          )}
+        </div>
         
         <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
@@ -54,26 +62,11 @@ const ProductListItem = ({ id, product, borderColor }: Product) => {
 
       <style jsx>{`
         @keyframes delete {
-          0% {
-            opacity: 1;
-            transform: scale(1) translateX(0);
-          }
-          50% {
-            opacity: 0.5;
-            transform: scale(0.95) translateX(-10px);
-          }
-          100% {
-            opacity: 0;
-            transform: scale(0.8) translateX(-100%);
-            height: 0;
-            margin: 0;
-            padding: 0;
-          }
+          0% { opacity: 1; transform: scale(1) translateX(0); }
+          50% { opacity: 0.5; transform: scale(0.95) translateX(-10px); }
+          100% { opacity: 0; transform: scale(0.8) translateX(-100%); height: 0; margin: 0; padding: 0; }
         }
-        
-        .animate-delete {
-          animation: delete 1s ease-out forwards;
-        }
+        .animate-delete { animation: delete 1s ease-out forwards; }
       `}</style>
     </div>
   );
