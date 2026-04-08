@@ -205,6 +205,7 @@ const Home = () => {
                   key={_id}
                   id={_id}
                   product={product}
+                  category={category}
                   borderColor={categoriesWithColors[category]}
                 />
               ))}
